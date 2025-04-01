@@ -4,105 +4,105 @@ import com.squareup.moshi.Json
 
 data class DrinkDetailsDTO(
     @Json(name = "dateModified")
-    val dateModified: String,
+    val dateModified: String? = null,
     @Json(name = "idDrink")
-    val idDrink: String,
+    val idDrink: String? = null,
     @Json(name = "strAlcoholic")
-    val strAlcoholic: String,
+    val strAlcoholic: String? = null,
     @Json(name = "strCategory")
-    val strCategory: String,
+    val strCategory: String? = null,
     @Json(name = "strCreativeCommonsConfirmed")
-    val strCreativeCommonsConfirmed: String,
+    val strCreativeCommonsConfirmed: String? = null,
     @Json(name = "strDrink")
-    val strDrink: String,
+    val strDrink: String? = null,
     @Json(name = "strDrinkAlternate")
-    val strDrinkAlternate: Any,
+    val strDrinkAlternate: Any? = null,
     @Json(name = "strDrinkThumb")
-    val strDrinkThumb: String,
+    val strDrinkThumb: String? = null,
     @Json(name = "strGlass")
-    val strGlass: String,
+    val strGlass: String? = null,
     @Json(name = "strIBA")
-    val strIBA: Any,
+    val strIBA: Any? = null,
     @Json(name = "strImageAttribution")
-    val strImageAttribution: Any,
+    val strImageAttribution: Any? = null,
     @Json(name = "strImageSource")
-    val strImageSource: Any,
+    val strImageSource: Any? = null,
     @Json(name = "strIngredient1")
-    val strIngredient1: String,
+    val strIngredient1: String? = null,
     @Json(name = "strIngredient10")
-    val strIngredient10: Any,
+    val strIngredient10: Any? = null,
     @Json(name = "strIngredient11")
-    val strIngredient11: Any,
+    val strIngredient11: Any? = null,
     @Json(name = "strIngredient12")
-    val strIngredient12: Any,
+    val strIngredient12: Any? = null,
     @Json(name = "strIngredient13")
-    val strIngredient13: Any,
+    val strIngredient13: Any? = null,
     @Json(name = "strIngredient14")
-    val strIngredient14: Any,
+    val strIngredient14: Any? = null,
     @Json(name = "strIngredient15")
-    val strIngredient15: Any,
+    val strIngredient15: Any? = null,
     @Json(name = "strIngredient2")
-    val strIngredient2: String,
+    val strIngredient2: String? = null,
     @Json(name = "strIngredient3")
-    val strIngredient3: String,
+    val strIngredient3: String? = null,
     @Json(name = "strIngredient4")
-    val strIngredient4: String,
+    val strIngredient4: String? = null,
     @Json(name = "strIngredient5")
-    val strIngredient5: String,
+    val strIngredient5: String? = null,
     @Json(name = "strIngredient6")
-    val strIngredient6: Any,
+    val strIngredient6: Any? = null,
     @Json(name = "strIngredient7")
-    val strIngredient7: Any,
+    val strIngredient7: Any? = null,
     @Json(name = "strIngredient8")
-    val strIngredient8: Any,
+    val strIngredient8: Any? = null,
     @Json(name = "strIngredient9")
-    val strIngredient9: Any,
+    val strIngredient9: Any? = null,
     @Json(name = "strInstructions")
-    val strInstructions: String,
+    val strInstructions: String? = null,
     @Json(name = "strInstructionsDE")
-    val strInstructionsDE: String,
+    val strInstructionsDE: String? = null,
     @Json(name = "strInstructionsES")
-    val strInstructionsES: String,
+    val strInstructionsES: String? = null,
     @Json(name = "strInstructionsFR")
-    val strInstructionsFR: String,
+    val strInstructionsFR: String? = null,
     @Json(name = "strInstructionsIT")
-    val strInstructionsIT: String,
+    val strInstructionsIT: String? = null,
     @Json(name = "strInstructionsZH-HANS")
-    val strInstructionsZHHANS: Any,
+    val strInstructionsZHHANS: Any? = null,
     @Json(name = "strInstructionsZH-HANT")
-    val strInstructionsZHHANT: Any,
+    val strInstructionsZHHANT: Any? = null,
     @Json(name = "strMeasure1")
-    val strMeasure1: String,
+    val strMeasure1: String? = null,
     @Json(name = "strMeasure10")
-    val strMeasure10: Any,
+    val strMeasure10: Any? = null,
     @Json(name = "strMeasure11")
-    val strMeasure11: Any,
+    val strMeasure11: Any? = null,
     @Json(name = "strMeasure12")
-    val strMeasure12: Any,
+    val strMeasure12: Any? = null,
     @Json(name = "strMeasure13")
-    val strMeasure13: Any,
+    val strMeasure13: Any? = null,
     @Json(name = "strMeasure14")
-    val strMeasure14: Any,
+    val strMeasure14: Any? = null,
     @Json(name = "strMeasure15")
-    val strMeasure15: Any,
+    val strMeasure15: Any? = null,
     @Json(name = "strMeasure2")
-    val strMeasure2: String,
+    val strMeasure2: String? = null,
     @Json(name = "strMeasure3")
-    val strMeasure3: String,
+    val strMeasure3: String? = null,
     @Json(name = "strMeasure4")
-    val strMeasure4: String,
+    val strMeasure4: String? = null,
     @Json(name = "strMeasure5")
-    val strMeasure5: String,
+    val strMeasure5: String? = null,
     @Json(name = "strMeasure6")
-    val strMeasure6: Any,
+    val strMeasure6: Any? = null,
     @Json(name = "strMeasure7")
-    val strMeasure7: Any,
+    val strMeasure7: Any? = null,
     @Json(name = "strMeasure8")
-    val strMeasure8: Any,
+    val strMeasure8: Any? = null,
     @Json(name = "strMeasure9")
-    val strMeasure9: Any,
+    val strMeasure9: Any? = null,
     @Json(name = "strTags")
-    val strTags: Any,
+    val strTags: Any? = null,
     @Json(name = "strVideo")
-    val strVideo: Any
+    val strVideo: Any? = null
 )

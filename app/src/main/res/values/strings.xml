@@ -2,5 +2,7 @@
     <string name="app_name">CocktailBook</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="main_blank_fragment">main fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

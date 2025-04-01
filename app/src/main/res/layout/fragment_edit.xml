@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DAB958"
+    tools:context="ui.edit.EditFragment">
+
+    <TextView
+        android:id="@+id/fg_edit_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Details Cocktail"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/fg_edit_tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:ellipsize="middle"
+        android:ems="10"
+        android:inputType="text"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fg_edit_tv_title"
+        tools:text="Name" />
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/fg_edit_img_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fg_edit_tv_name"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp">
+
+        <ImageView
+            android:id="@+id/fg_details_iv_item_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:contentDescription="cocktail_img"
+            tools:srcCompat="@mipmap/ic_launcher" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <EditText
+        android:id="@+id/et_fragment_edit_cocktail_url_img"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="50dp"
+        android:ellipsize="middle"
+        android:ems="10"
+        android:inputType="text"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fg_edit_img_card"
+        tools:text="URL Image Cocktail" />
+
+
+    <TextView
+        android:id="@+id/tv_fragment_edit_ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Ingredients"
+        app:layout_constraintBottom_toTopOf="@id/et_fragment_edit_cocktail_ingredients"
+        app:layout_constraintEnd_toEndOf="@id/et_fragment_edit_cocktail_url_img"
+        app:layout_constraintStart_toStartOf="@id/et_fragment_edit_cocktail_url_img"
+        app:layout_constraintTop_toBottomOf="@id/et_fragment_edit_cocktail_url_img" />
+
+
+    <EditText
+        android:id="@+id/et_fragment_edit_cocktail_ingredients"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@id/tv_fragment_edit_instructions"
+        app:layout_constraintEnd_toEndOf="@id/et_fragment_edit_cocktail_url_img"
+        app:layout_constraintStart_toStartOf="@id/et_fragment_edit_cocktail_url_img"
+        app:layout_constraintTop_toBottomOf="@id/tv_fragment_edit_ingredients" />
+
+
+    <TextView
+        android:id="@+id/tv_fragment_edit_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Instructions"
+        app:layout_constraintBottom_toTopOf="@id/et_fragment_edit_cocktail_instructions"
+        app:layout_constraintEnd_toEndOf="@id/et_fragment_edit_cocktail_ingredients"
+        app:layout_constraintStart_toStartOf="@id/et_fragment_edit_cocktail_ingredients"
+        app:layout_constraintTop_toBottomOf="@id/et_fragment_edit_cocktail_ingredients" />
+
+
+    <EditText
+        android:id="@+id/et_fragment_edit_cocktail_instructions"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ellipsize="end"
+        android:maxLines="5"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@id/btn_fragment_edit_cocktail"
+        app:layout_constraintEnd_toEndOf="@id/et_fragment_edit_cocktail_ingredients"
+        app:layout_constraintStart_toStartOf="@id/et_fragment_edit_cocktail_ingredients"
+        app:layout_constraintTop_toBottomOf="@id/tv_fragment_edit_instructions" />
+
+
+    <Button
+        android:id="@+id/btn_edit_fragment_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_fragment_edit_cocktail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_fragment_edit_cocktail_instructions"/>
+
+
+
+    <Button
+        android:id="@+id/btn_fragment_edit_cocktail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_edit_fragment_delete"
+        app:layout_constraintTop_toTopOf="@id/btn_edit_fragment_delete" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

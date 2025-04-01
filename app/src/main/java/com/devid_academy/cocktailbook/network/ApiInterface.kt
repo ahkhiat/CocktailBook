@@ -2,6 +2,7 @@ package com.devid_academy.cocktailbook.data.api
 
 import com.devid_academy.cocktailbook.data.dto.DrinkLiteDTO
 import com.devid_academy.cocktailbook.data.dto.ResponseAllDrinksLite
+import com.devid_academy.cocktailbook.data.dto.ResponseDrinkDetailsDTO
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -18,5 +19,8 @@ interface ApiInterface {
 
     @GET(ApiRoutes.ALL_COCKTAILS)
     suspend fun getAllCocktails(): Response<ResponseAllDrinksLite>?
+
+    @GET(ApiRoutes.GET_COCKTAIL)
+    suspend fun getCocktail(@Query("i") idCocktail: Int): Response<ResponseDrinkDetailsDTO>?
 
 }

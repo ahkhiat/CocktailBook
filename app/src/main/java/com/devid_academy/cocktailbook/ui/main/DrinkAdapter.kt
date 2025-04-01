@@ -7,8 +7,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devid_academy.cocktailbook.data.room.model.DrinkLiteModel
 import com.devid_academy.cocktailbook.databinding.ItemRvDrinkBinding
+import com.devid_academy.cocktailbook.utils.picassoInsert
 
-class DrinkAdapter(private val onItemClick: (DrinkLiteModel) -> Unit): ListAdapter<DrinkLiteModel, DrinkAdapter.DrinkHolder>(ContactDiffCallback) {
+class DrinkAdapter(
+    private val onItemClick: (String) -> Unit
+): ListAdapter<DrinkLiteModel,
+        DrinkAdapter.DrinkHolder>(ContactDiffCallback) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -21,25 +25,16 @@ class DrinkAdapter(private val onItemClick: (DrinkLiteModel) -> Unit): ListAdapt
         return DrinkHolder(binding)
     }
     override fun onBindViewHolder(holder: DrinkAdapter.DrinkHolder, position: Int) {
-        val article = getItem(position)
+        val drink = getItem(position)
         with(holder.binding) {
-//            itemRvTvTitle.text = article.title
-//            itemRvArticlePreview.text = article.description
-//            itemRvDate.text = formatDate(article.createdAt!!)
-//
-//            if (!article.urlImage.isNullOrEmpty()) {
-//                picassoInsert(article.urlImage,itemRvIvArticle)
-//            }
-//            val backgroundColor = when (article.category) {
-//                1 -> "#FFF0DE"
-//                2 -> "#FFE8E8"
-//                3 -> "#F5FFF3"
-//                else -> "#FFFFFF"
-//            }
-//            itemRvArticle.setCardBackgroundColor(Color.parseColor(backgroundColor))
+            itemRvTvTitle.text = drink.strDrink
 
-            itemRvArticle.setOnClickListener {
-                onItemClick(article)
+            if (!drink.strDrinkThumb.isNullOrEmpty()) {
+                picassoInsert(drink.strDrinkThumb,itemRvIv)
+            }
+
+            itemRvDrink.setOnClickListener {
+                onItemClick(drink.idDrink)
             }
         }
     }

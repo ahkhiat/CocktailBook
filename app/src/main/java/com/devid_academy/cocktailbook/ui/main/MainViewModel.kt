@@ -6,6 +6,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDirections
 import com.devid_academy.cocktailbook.data.api.ApiService
 import com.devid_academy.cocktailbook.data.dto.DrinkLiteDTO
 import com.devid_academy.cocktailbook.data.room.AppDatabase
@@ -38,9 +39,6 @@ class MainViewModel @Inject constructor(
 
     private val _combinedDrinksListLiveData = MediatorLiveData<List<DrinkLiteModel>>()
     val combinedDrinksListLiveData: LiveData<List<DrinkLiteModel>> = _combinedDrinksListLiveData
-
-
-
 
 
     init {
@@ -168,5 +166,7 @@ class MainViewModel @Inject constructor(
             }
         }
     }
+
+
 
 }
