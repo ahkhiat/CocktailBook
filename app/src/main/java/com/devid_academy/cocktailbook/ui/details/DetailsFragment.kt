@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.devid_academy.cocktailbook.R
 import com.devid_academy.cocktailbook.databinding.FragmentDetailsBinding
+import com.devid_academy.cocktailbook.utils.picassoInsert
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,11 +21,6 @@ class DetailsFragment : Fragment() {
     private val args: DetailsFragmentArgs by navArgs()
     private val viewModel: DetailsViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        viewModel.getRemoteDrink(args.idDrink)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,16 +28,49 @@ class DetailsFragment : Fragment() {
     ): View? {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         Log.i("DETAILS FG", "Args :" + args)
-//        val idDrink = args.idDrink
-//        Log.i("DETAILS FRAGMENT", "Drink ID reçu: $idDrink")
+//        viewModel.getRemoteDrink(args.idDrink)
+        viewModel.getIfRemoteOrRoom(args.drink)
+
+        binding.fgDetailsBtn.visibility = if (args.drink.isMine) View.VISIBLE else View.GONE
+        Log.i("DETAILS FG", "ARGS DRINKS IS MINE " + args.drink.isMine)
+
+        viewModel.drinkLiveData.observe(viewLifecycleOwner) { drink ->
+            drink?.let {
+                binding.apply {
+                    fgDetailsTvTitle.text = it.strDrink
+                    fgDetailsIvItemImage.apply {
+                        if(!it.strDrinkThumb.isNullOrEmpty()) {
+                            picassoInsert(it.strDrinkThumb, this)
+                        }
+                    }
+                    fgDetailsTvInsctructionsList.text = drink.strInstructions
+
+
+
+
+
+                }
+            }
+        }
+
+        viewModel.ingredientsLiveData.observe(viewLifecycleOwner) { ingredients ->
+
+            var ingredientListToShow = ""
+
+            ingredients.forEach {
+                Log.i("DETAILS FG", "Ingredient :" + it)
+                ingredientListToShow += "$it \n"
+
+                binding.fgDetailsTvIngredientsList.text = ingredientListToShow
+            }
+
+        }
 
     }
 

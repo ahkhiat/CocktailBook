@@ -45,7 +45,7 @@ class MainViewModel @Inject constructor(
         Log.i("MAIN VM", "MainViewModel instancié")
         getRemoteDrinks()
         getAllDrinksDetailedRoom()
-
+//
 //        insertDrinkDetailedRoom(DrinkDetailsRoom(
 //            0,
 //            "PastisPiscine",

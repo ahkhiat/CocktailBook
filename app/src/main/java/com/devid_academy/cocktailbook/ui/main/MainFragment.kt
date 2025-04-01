@@ -58,8 +58,8 @@ class MainFragment : Fragment() {
         val navController = findNavController()
 
         drinkAdapter = DrinkAdapter(
-            onItemClick = { drinkId ->
-                val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(drinkId)
+            onItemClick = { drink ->
+                val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(drink)
                 navController.navigate(action)
             }
         )

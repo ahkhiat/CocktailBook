@@ -34,8 +34,10 @@
         android:id="@+id/main_fg_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Nouveau Cocktail"
+        android:background="@drawable/btn_large"
         android:layout_marginVertical="20dp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

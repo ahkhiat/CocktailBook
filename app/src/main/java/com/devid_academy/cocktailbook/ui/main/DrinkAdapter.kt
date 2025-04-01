@@ -10,7 +10,7 @@ import com.devid_academy.cocktailbook.databinding.ItemRvDrinkBinding
 import com.devid_academy.cocktailbook.utils.picassoInsert
 
 class DrinkAdapter(
-    private val onItemClick: (String) -> Unit
+    private val onItemClick: (DrinkLiteModel) -> Unit
 ): ListAdapter<DrinkLiteModel,
         DrinkAdapter.DrinkHolder>(ContactDiffCallback) {
 
@@ -34,7 +34,7 @@ class DrinkAdapter(
             }
 
             itemRvDrink.setOnClickListener {
-                onItemClick(drink.idDrink)
+                onItemClick(drink)
             }
         }
     }
