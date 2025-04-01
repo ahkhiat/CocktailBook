@@ -1,16 +1,11 @@
 package com.devid_academy.cocktailbook.data.room.model
 
 
-import androidx.room.Entity
-
-
-@Entity(tableName = "drink_entity")
-
-data class DrinkLiteEntity(
+data class DrinkLiteModel(
 
     val idDrink: String,
     val strDrink: String,
     val strDrinkThumb: String,
-    val isMine: Boolean
+    val isMine: Boolean = true
 
 )

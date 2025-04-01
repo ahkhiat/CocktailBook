@@ -58,6 +58,7 @@ class AppModule {
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "cocktail_book_db")
+            .fallbackToDestructiveMigration()
             .build()
     }
 

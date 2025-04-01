@@ -22,5 +22,8 @@ data class DrinkDetailsRoom(
     val strIngredients: String,
 
     @ColumnInfo(name = "strInstructions")
-    val strInstructions: String
+    val strInstructions: String,
+
+    @ColumnInfo(name = "isMine")
+    val isMine: Boolean = true
 )

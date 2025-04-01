@@ -29,9 +29,32 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.remoteDrinksListLiveData.observe(viewLifecycleOwner) {
-            Log.i("MAIN FG", "MAIN FG List RetroFit : " + it)
+//        viewModel.remoteDrinksListLiveData.observe(viewLifecycleOwner) {
+//            Log.i("MAIN FG", "MAIN FG List RetroFit : " + it)
+//        }
+//
+//        viewModel.roomDrinksListLiveData.observe(viewLifecycleOwner) {
+//            Log.i("MAIN FG", "MAIN FG List Room : " + it)
+//        }
+
+        viewModel.combinedDrinksListLiveData.observe(viewLifecycleOwner) {
+            Log.i("MAIN FG", "Liste Combinée : " + it)
         }
+
+
+        viewModel.roomDrinksListLiveData.observe(viewLifecycleOwner) {
+            Log.i("DEBUG", "Taille Liste Room : ${viewModel.getRoomListSize()}")
+        }
+
+        viewModel.remoteDrinksListLiveData.observe(viewLifecycleOwner) {
+            Log.i("DEBUG", "Taille Liste Retrofit : ${viewModel.getRemoteListSize()}")
+        }
+
+        viewModel.combinedDrinksListLiveData.observe(viewLifecycleOwner) {
+            Log.i("DEBUG", "Taille Liste Fusionnée : ${viewModel.getCombinedListSize()}")
+        }
+
+
 
 
     }

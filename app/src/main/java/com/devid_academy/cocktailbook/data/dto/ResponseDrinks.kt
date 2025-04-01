@@ -1,5 +1,6 @@
 package com.devid_academy.cocktailbook.data.dto
 
+import com.devid_academy.cocktailbook.data.room.model.DrinkLiteModel
 import com.squareup.moshi.Json
 
 data class ResponseDrinkDetailsDTO(
