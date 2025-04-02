@@ -42,18 +42,18 @@ class MainFragment : Fragment() {
 //            Log.i("MAIN FG", "MAIN FG List Room : " + it)
 //        }
 
-        viewModel.combinedDrinksListLiveData.observe(viewLifecycleOwner) {
-            Log.i("MAIN FG", "Liste Combinée : " + it)
-        }
-        viewModel.roomDrinksListLiveData.observe(viewLifecycleOwner) {
-            Log.i("DEBUG", "Taille Liste Room : ${viewModel.getRoomListSize()}")
-        }
-        viewModel.remoteDrinksListLiveData.observe(viewLifecycleOwner) {
-            Log.i("DEBUG", "Taille Liste Retrofit : ${viewModel.getRemoteListSize()}")
-        }
-        viewModel.combinedDrinksListLiveData.observe(viewLifecycleOwner) {
-            Log.i("DEBUG", "Taille Liste Fusionnée : ${viewModel.getCombinedListSize()}")
-        }
+//        viewModel.combinedDrinksListLiveData.observe(viewLifecycleOwner) {
+//            Log.i("MAIN FG", "Liste Combinée : " + it)
+//        }
+//        viewModel.roomDrinksListLiveData.observe(viewLifecycleOwner) {
+//            Log.i("DEBUG", "Taille Liste Room : ${viewModel.getRoomListSize()}")
+//        }
+//        viewModel.remoteDrinksListLiveData.observe(viewLifecycleOwner) {
+//            Log.i("DEBUG", "Taille Liste Retrofit : ${viewModel.getRemoteListSize()}")
+//        }
+//        viewModel.combinedDrinksListLiveData.observe(viewLifecycleOwner) {
+//            Log.i("DEBUG", "Taille Liste Fusionnée : ${viewModel.getCombinedListSize()}")
+//        }
 
         val navController = findNavController()
 
@@ -81,12 +81,18 @@ class MainFragment : Fragment() {
                 navController.navigate(R.id.action_mainFragment_to_createFragment)
             }
 
-
         }
 
+    }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllDrinksDetailedRoom()
+    }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 

@@ -45,21 +45,7 @@ class MainViewModel @Inject constructor(
         Log.i("MAIN VM", "MainViewModel instancié")
         getRemoteDrinks()
         getAllDrinksDetailedRoom()
-//
-//        insertDrinkDetailedRoom(DrinkDetailsRoom(
-//            0,
-//            "PastisPiscine",
-//            "urlimage2",
-//            "2cl de get",
-//            "ajouter glacon"
-//        ))
-//        insertDrinkDetailedRoom(DrinkDetailsRoom(
-//            0,
-//            "vodka redbull",
-//            "urlimage3",
-//            "2cl de vodka",
-//            "blabla"
-//        ))
+
 
         _combinedDrinksListLiveData.addSource(roomDrinksListLiveData) { result ->
             _combinedDrinksListLiveData.value = combineDrinks(result ?: emptyList(), remoteDrinksListLiveData.value ?: emptyList())
@@ -86,9 +72,9 @@ class MainViewModel @Inject constructor(
         roomList: List<DrinkLiteModel>,
         remoteList: List<DrinkLiteModel>
     ): List<DrinkLiteModel> {
-        return (roomList + remoteList).distinctBy {
-            it.idDrink
-        }
+        return (roomList + remoteList)
+            .distinctBy { it.idDrink }
+            .sortedBy { it.strDrink }
     }
 
     fun getRemoteDrinks() {
@@ -97,11 +83,8 @@ class MainViewModel @Inject constructor(
             _isLoading.postValue(true)
             try {
                 val response = withContext(Dispatchers.IO) {
-                    Log.i("MAIN VM", "Avant appel API")
                     apiService.getApi().getAllCocktails()
                 }
-                Log.i("MAIN VM", "Après appel API")
-
                 response?.let {
                     if (response.isSuccessful) {
                         val result = response.body()
@@ -148,25 +131,4 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-
-    fun insertDrinkDetailedRoom(drinkDetailedRoom : DrinkDetailsRoom){
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                db.drinkDetailsDAO().insert(drinkDetailedRoom)
-                Log.i("MAIN VM", "insert details")
-            }
-        }
-    }
-
-    fun deletedByIdDrinkDetailedRoom(id: Long){
-        viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                db.drinkDetailsDAO().deleteById(idDrink = id)
-                Log.i("MAIN VM", "cocktail supprimé : id numero ${id}" )
-            }
-        }
-    }
-
-
-
 }

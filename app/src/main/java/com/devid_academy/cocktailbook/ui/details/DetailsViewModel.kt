@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devid_academy.cocktailbook.data.api.ApiService
 import com.devid_academy.cocktailbook.data.dto.DrinkDetailsDTO
+import com.devid_academy.cocktailbook.data.room.AppDatabase
+import com.devid_academy.cocktailbook.data.room.model.DrinkDetailsRoom
 import com.devid_academy.cocktailbook.data.room.model.DrinkLiteModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +21,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val db: AppDatabase
 ): ViewModel() {
 
     private val _isLoading = MutableLiveData(false)
@@ -28,16 +31,37 @@ class DetailsViewModel @Inject constructor(
     private val _drinkLiveData = MutableLiveData<DrinkDetailsDTO?>()
     val drinkLiveData: LiveData<DrinkDetailsDTO?> = _drinkLiveData
 
+    private val _drinkRoomLiveData = MutableLiveData<DrinkDetailsRoom?>()
+    val drinkRoomLiveData: LiveData<DrinkDetailsRoom?> = _drinkRoomLiveData
+
     private val _ingredientsLiveData = MutableLiveData<List<String>>()
     val ingredientsLiveData: LiveData<List<String>> get() = _ingredientsLiveData
 
     fun getIfRemoteOrRoom(drink: DrinkLiteModel) {
         Log.i("DETAILS VM ", "Get If remote or room " + drink.idDrink)
         if (drink.isMine) {
-            Log.i("DETAILS VM", "requete get one Room")
+            getRoomDrink(drink.idDrink)
         } else {
             getRemoteDrink(drink.idDrink)
 
+        }
+    }
+
+    fun getRoomDrink(drinkId: String) {
+        viewModelScope.launch {
+            Log.i("DETAILS VM", "Début de getRoomDrink()")
+            try {
+                _isLoading.value = true
+                val result = withContext(Dispatchers.IO) {
+                    db.drinkDetailsDAO().findByIdDrink(drinkId.toLong())
+                }
+                Log.i("DETAILS VM", "result : " + result)
+                _drinkRoomLiveData.value = result
+                _isLoading.value = false
+            } catch (e: Exception) {
+                _isLoading.value = false
+                Log.e("DETAILS VM", "Erreur Room : ${e.localizedMessage}", e)
+            }
         }
     }
 
@@ -55,25 +79,26 @@ class DetailsViewModel @Inject constructor(
                 response?.let {
                     if (response.isSuccessful) {
                         val result = response.body()
-
                         val drinkDetails = result?.drinksDetailsDto?.get(0)
-
                         _drinkLiveData.value = drinkDetails
-
                         drinkDetails?.let {
                             _ingredientsLiveData.value = getFormattedIngredients(it)
                         }
-
+                        _isLoading.value = false
                         Log.i("DETAILS VM", "Drink Details : " + _drinkLiveData.value)
                     } else {
+                        _isLoading.value = false
                         Log.e("DETAILS VM", "Erreur HTTP ${response.code()}: ${response.message()}")
                     }
                 }
             } catch (e: UnknownHostException) {
+                _isLoading.value = false
                 Log.e("DETAILS VM", "Erreur réseau : Impossible de se connecter à l'API", e)
             } catch (e: SocketTimeoutException) {
+                _isLoading.value = false
                 Log.e("DETAILS VM", "Erreur : Délai d'attente dépassé", e)
             } catch (e: Exception) {
+                _isLoading.value = false
                 Log.e("DETAILS VM", "Erreur API : ${e.localizedMessage}", e)
             } finally {
                 _isLoading.postValue(false)

@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.devid_academy.cocktailbook.R
 import com.devid_academy.cocktailbook.databinding.FragmentDetailsBinding
+import com.devid_academy.cocktailbook.ui.main.MainFragmentDirections
 import com.devid_academy.cocktailbook.utils.picassoInsert
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,12 +36,14 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val navController = findNavController()
+
         Log.i("DETAILS FG", "Args :" + args)
-//        viewModel.getRemoteDrink(args.idDrink)
         viewModel.getIfRemoteOrRoom(args.drink)
 
         binding.fgDetailsBtn.visibility = if (args.drink.isMine) View.VISIBLE else View.GONE
         Log.i("DETAILS FG", "ARGS DRINKS IS MINE " + args.drink.isMine)
+
 
         viewModel.drinkLiveData.observe(viewLifecycleOwner) { drink ->
             drink?.let {
@@ -50,28 +55,44 @@ class DetailsFragment : Fragment() {
                         }
                     }
                     fgDetailsTvInsctructionsList.text = drink.strInstructions
-
-
-
-
-
                 }
             }
         }
 
         viewModel.ingredientsLiveData.observe(viewLifecycleOwner) { ingredients ->
-
             var ingredientListToShow = ""
-
             ingredients.forEach {
                 Log.i("DETAILS FG", "Ingredient :" + it)
                 ingredientListToShow += "$it \n"
-
                 binding.fgDetailsTvIngredientsList.text = ingredientListToShow
             }
-
         }
 
+        viewModel.drinkRoomLiveData.observe(viewLifecycleOwner) { drink ->
+            drink?.let {
+                binding.apply {
+                    fgDetailsTvTitle.text = it.strDrink
+                    fgDetailsIvItemImage.apply {
+                        if(!it.strDrinkThumb.isNullOrEmpty()) {
+                            picassoInsert(it.strDrinkThumb, this)
+                        }
+                    }
+                    fgDetailsTvIngredientsList.text = drink.strIngredients
+                    fgDetailsTvInsctructionsList.text = drink.strInstructions
+
+                    fgDetailsBtn.setOnClickListener {
+                        val action = DetailsFragmentDirections.actionDetailsFragmentToEditFragment(drink)
+                        navController.navigate(action)
+                    }
+
+                }
+            }
+        }
+
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

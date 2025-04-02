@@ -32,6 +32,19 @@
         <argument
             android:name="drink"
             app:argType="com.devid_academy.cocktailbook.data.room.model.DrinkLiteModel" />
+        <action
+            android:id="@+id/action_detailsFragment_to_editFragment"
+            app:destination="@id/editFragment"
+            app:popUpTo="@id/detailsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.devid_academy.cocktailbook.ui.edit.EditFragment"
+        android:label="EditFragment" >
+        <argument
+            android:name="drink"
+            app:argType="com.devid_academy.cocktailbook.data.room.model.DrinkDetailsRoom" />
     </fragment>
 
 
